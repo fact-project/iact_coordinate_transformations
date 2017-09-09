@@ -1,0 +1,20 @@
+\begin{tikzpicture}
+
+  \draw[thin, lightgray] (0, 0) circle [radius=2cm];
+  \foreach \ang in {45, 135, 225, 315} {
+    \draw[thin, lightgray, dashed, rounded corners] (0, 0) -- (\ang: 2.8cm)
+    node[fill=white] {$\SI{\ang}{\degree}$};
+  }
+
+  \coordinate (A) at (0: 2);
+  \coordinate (B) at (0, 0);
+  \coordinate (C) at (30: 2);
+
+  \draw[->, thick, blue!80!black] (B) -- (C)
+  pic [draw=blue!80!black, fill=blue!20, angle radius=1cm, "\azimuth{}"] {angle = A--B--C};
+
+  \draw[->, thick] (-2.2, 0) node[left] {South} -- (2.3, 0) node [right] {$x$  North}; 
+  \draw[->, thick] (0, -2.2) node[below] {West} -- (0, 2.3) node [above, align=center, text width=1cm] {East\\$y$}; 
+
+\end{tikzpicture}
+

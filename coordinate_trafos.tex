@@ -1,0 +1,63 @@
+\documentclass{scrartcl}
+
+\usepackage{fontspec}
+
+\usepackage{polyglossia}
+\setmainlanguage{english}
+
+
+\usepackage{mathtools}
+
+\usepackage{siunitx}
+
+
+\usepackage[
+  nabla=upright,
+  partial=upright,
+  bold-style=ISO,
+  math-style=ISO,
+]{unicode-math}
+\setmathfont{Latin Modern Math}
+
+\usepackage{tikz}
+\usetikzlibrary{angles}
+\usetikzlibrary{quotes}
+
+\usepackage[urldate=edtf, date=edtf]{biblatex}
+\addbibresource{references.bib}
+
+\usepackage[section, below, above]{placeins}
+
+\usepackage[colorlinks]{hyperref}
+\usepackage{bookmark}
+\usepackage[shortcuts]{extdash}
+
+\newcommand\azimuth{\ensuremath{\varphi}}
+\newcommand\zenith{\ensuremath{\theta}}
+
+\DeclarePairedDelimiter\norm\lVert\rVert
+
+
+\begin{document}
+  \section{Coordinate System Definition}
+
+  \subsection{Horizontal Coordinate Frame}
+  A coordinate in the sky for a given location on earth at a given 
+  time is represented using the spherical coordinates \emph{Zenith Distance} \zenith{} and \emph{Azimuth} \azimuth{} or cartesian coordinates $\symbf{r} = (x, y, z)^\top$.
+  As only the two angles are needed, we normalize the cartesian coordinates, so that $\norm{\symbf{r}} = 1$.
+
+  The coordinate conventions~\cite{astropy-coords} of \texttt{astropy}~\cite{astropy} are used as shown in \autoref{fig:coords2d}:
+  The Azimuth \azimuth{} is $0$ in the North and \ang{90} in the East.
+  The $x$\-/axis points North, the $y$\-/axis points East and the $z$\-/axis points upwards.
+
+  \begin{figure}[htpb]
+  \centering
+  \input{graphics/coords2d.tex}
+  \caption{Definition of the coordinates in the $x$\-/$y$\-/plane according to astropy.}
+
+  \label{fig:coords2d}
+  \end{figure}
+  
+
+  \printbibliography
+\end{document}
