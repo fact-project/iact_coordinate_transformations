@@ -1,0 +1,22 @@
+\tdplotsetmaincoords{60}{45}
+\begin{tikzpicture}[tdplot_main_coords]
+  \draw[thick,->] (0,0,0) -- (3,0,0) node[right]{$x$ (N)};
+  \draw[thick,->] (0,0,0) -- (0,3,0) node[right]{$y$ (E)};
+  \draw[thick,->] (0,0,0) -- (0,0,3) node[anchor=south]{$z$};
+
+  \pgfmathsetmacro{\ax}{0.5}
+  \pgfmathsetmacro{\ay}{2}
+  \pgfmathsetmacro{\az}{3}
+
+  \draw[thick,->,red!80!black] (0,0,0) -- (\ax,\ay,\az);
+  \draw[dashed,red!80!black] (0,0,0) -- (\ax,\ay,0) -- (\ax,\ay,\az);
+
+  \tdplotgetpolarcoords{\ax}{\ay}{\az}
+  \tdplotsetthetaplanecoords{\tdplotresphi}
+  \tdplotdrawarc[tdplot_rotated_coords,yellow!60!red]{(0,0,0)}{1}{0}%
+    {\tdplotrestheta}{anchor=south,yellow!60!red}{\zenith}
+
+  \tdplotdrawarc[draw=blue!80!black]{(0, 0, 0)}{1}{0}{\tdplotresphi}{anchor=west, blue!80!black}{\azimuth}
+\end{tikzpicture}
+
+

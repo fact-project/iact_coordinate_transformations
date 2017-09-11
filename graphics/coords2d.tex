@@ -10,8 +10,8 @@
   \coordinate (B) at (0, 0);
   \coordinate (C) at (30: 2);
 
-  \draw[->, thick, blue!80!black] (B) -- (C)
-  pic [draw=blue!80!black, fill=blue!20, angle radius=1cm, "\azimuth{}"] {angle = A--B--C};
+  \draw[->, thick, red!80!black] (B) -- (C)
+  pic [blue!80!black, draw=blue!80!black, fill=blue!20, angle radius=1cm, "\azimuth{}"] {angle = A--B--C};
 
   \draw[->, thick] (-2.2, 0) node[left] {South} -- (2.3, 0) node [right] {$x$  North}; 
   \draw[->, thick] (0, -2.2) node[below] {West} -- (0, 2.3) node [above, align=center, text width=1cm] {East\\$y$}; 

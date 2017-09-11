@@ -1,0 +1,49 @@
+\tdplotsetmaincoords{60}{45}
+\begin{tikzpicture}[tdplot_main_coords, scale=3]
+  \tikzset{pointing/.style={color=blue!80!black}}
+  \tikzset{vector/.style={color=red!80!black}}
+
+  \newcommand\pzd{25}
+  \newcommand\paz{20}
+
+  \newcommand\vzd{45}
+  \newcommand\vaz{45}
+
+  \pgfmathparse{sin(\vzd)*cos(\vaz)}\let\vx\pgfmathresult
+  \pgfmathparse{sin(\vzd)*sin(\vaz)}\let\vy\pgfmathresult
+  \pgfmathparse{cos(\vzd)}\let\vz\pgfmathresult
+
+
+  \tdplotsetcoord{P}{1}{\pzd}{\paz};
+  \tdplotsetcoord{R}{1}{\vzd}{\vaz};
+
+  \draw[thick,->, vector] (0,0,0) -- (R) node[right] {$\symbf{r}$};
+  \draw[thin, dashed, vector] (Rx) -- (Rxy) -- (Ry);
+  \draw[thin, dashed, vector] (Rxy) -- (R);
+
+  \draw[thin, dashed, pointing] (0,0,0) -- (Px) -- (Pxy) -- (Py);
+  \draw[thin, dashed, pointing] (Pxy) -- (P);
+
+  \draw[thick,->] (0,0,0) -- (1,0,0) node[right]{$x$ (N)};
+  \draw[thick,->] (0,0,0) -- (0,1,0) node[right]{$y$ (E)};
+  \draw[thick,->] (0,0,0) -- (0,0,1) node[anchor=south]{$z$};
+
+
+  \tdplotsetrotatedcoords{\paz}{\pzd}{0}
+  \tdplottransformmainrot{\vx}{\vy}{\vz}
+
+
+  \draw[thick,color=gray,tdplot_rotated_coords,->] (0,0,0) -- (1,0,0) node[right]{$x'$};
+  \draw[thick,color=gray,tdplot_rotated_coords,->] (0,0,0) -- (0,1,0) node[left]{$y'$};
+  \draw[thick,color=gray,tdplot_rotated_coords,->] (0,0,0) -- (0,0,1.2) node[above right]{$z'$};
+
+  \draw[thin,color=gray,tdplot_rotated_coords, dotted, vector] (\tdplotresx,0,0) -- (\tdplotresx,\tdplotresy,0) -- (0, \tdplotresy, 0);
+  \draw[thin,color=gray,tdplot_rotated_coords, dotted, vector] (\tdplotresx,\tdplotresy,0) -- (\tdplotresx,\tdplotresy,\tdplotresz);
+  
+  \draw[thick,->, pointing] (0,0,0) -- (P) node[right] {$\symbf{p}$};
+
+
+\end{tikzpicture}
+
+
+
