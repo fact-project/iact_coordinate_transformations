@@ -138,7 +138,7 @@ using the cartesian representation
 and rotating first by $-\azimuth$ around the $z$-axis and then by $-\zenith$ around the $y$-axis and then converting back to spherical coordinates:
 \begin{align}
   \v{r}' &= \mat{R}_y(-\zenith) \cdot \mat{R}_z(-\azimuth) \cdot \v{r}
-  \intertext{with $\mat{R}_z$ and $\mat{R}_z$ being the \emph{right-handed} rotation matrices\footnote{\texttt{astropy.coordinates.matrix\_utilities.rotation\_matrix} uses the left handed rotation convention.}:}
+  \intertext{with $\mat{R}_z$ and $\mat{R}_z$ being the \emph{right-handed} rotation matrices\footnotemark{}:}
   \mat{R}_y(\alpha) & =
     \begin{pmatrix} 
       \cos\alpha & 0 & \sin\alpha\\ 
@@ -155,6 +155,18 @@ and rotating first by $-\azimuth$ around the $z$-axis and then by $-\zenith$ aro
   \azimuth' &= \operatorname{arctan2}(y, x) \\
   \zenith' &= \arccos(z)
 \end{align}
+\footnotetext{\texttt{astropy.coordinates.matrix\_utilities.rotation\_matrix} uses the left handed rotation convention.}
+
+or to the angles to the optical axis
+\begin{align}
+  \alpha &= \operatorname{arctan2}(x', z'), \\
+  \beta &= \operatorname{arctan2}(y', z').
+\end{align}
+
+For the back-transformation, the invers rotations are applied
+\begin{equation}
+  \v{r} = \mat{R}_z(\azimuth) \cdot \mat{R}_y(\zenith) \cdot \v{r}
+\end{equation}
 
 
 
@@ -169,22 +181,12 @@ For a given angle $\alpha$ to the optical axis, the distance to the optical axis
 \begin{equation}
   d = f \cdot \tan(\alpha),
 \end{equation}
-or using the small angle approximation, which should be appropriate
-for any cherenkov telescope:
-\begin{equation}
-  d = f \cdot \alpha
-\end{equation}
-So we get the polar coordinate $r = \sqrt{u^2 + v^2}$ in the camera frame
-as 
-\begin{equation}
-  r = f \cdot \tan{\zenith'} \approx f \cdot \zenith'
-\end{equation}
-As $v$ should be parallel to the zenith axis we get
 
-\begin{equation}
-  u = r \cdot \sin(\azimuth') \\
-  v = r \cdot \cos()
-\end{equation}
+This results in
+\begin{align}
+  v &= f \cdot \tan(\alpha) = f \cdot \frac{x'}{z'} \\
+  u &= -f \cdot \tan(\beta) = f \cdot \frac{y'}{z'}.
+\end{align}
 
 
 \printbibliography
